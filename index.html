@@ -691,16 +691,86 @@
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SYLLABUS CARDS REDESIGN
+       SYLLABUS SECTION REDESIGN
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     .section-syllabus {
-      padding: clamp(56px, 8vw, 96px) 0;
+      background-color: #F5F2ED;
+      padding: 96px 0;
     }
 
+    .section-syllabus .container {
+      max-width: 1160px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(16px, 4vw, 32px);
+      padding-right: clamp(16px, 4vw, 32px);
+    }
+
+    .section-syllabus .section-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #6D3AE8;
+      letter-spacing: 0.08em;
+      text-transform: none;
+    }
+
+    .section-syllabus .section-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      color: #1A1410;
+      letter-spacing: -0.025em;
+      margin-top: 6px;
+      margin-bottom: 32px;
+    }
+
+    /* Tab bar */
+    .section-syllabus .section-tabs {
+      display: flex;
+      gap: 28px;
+      border-bottom: 1px solid rgba(60, 40, 10, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .section-syllabus .tab-btn {
+      background: none;
+      border: none;
+      padding: 0 0 10px 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: #A8998A;
+      cursor: pointer;
+      position: relative;
+      transition: color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .section-syllabus .tab-btn:hover {
+      color: #1A1410;
+    }
+
+    .section-syllabus .tab-btn--active {
+      font-weight: 600;
+      color: #1A1410;
+    }
+
+    .section-syllabus .tab-btn--active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #6D3AE8;
+    }
+
+    /* Card Grid */
     .syllabus__grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--space-24);
+      gap: 20px;
+      margin-top: 40px;
     }
 
     @media (min-width: 768px) {
@@ -709,87 +779,154 @@
       }
     }
 
+    /* Subject Cards Base */
     .subject-panel {
-      background-color: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow-card);
-      transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1), border-color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 28px 28px 24px;
+      border: 1px solid rgba(60, 40, 10, 0.07);
+      box-shadow: 0 2px 8px rgba(60, 40, 10, 0.06), 0 1px 2px rgba(60, 40, 10, 0.04);
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .subject-panel:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--border-bright);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(60, 40, 10, 0.1), 0 2px 8px rgba(60, 40, 10, 0.06);
+      border-color: rgba(60, 40, 10, 0.12);
     }
 
-    .subject-panel--maths {
-      border-top: 2px solid #6D3AE8;
-      box-shadow: var(--shadow-card), 0 -4px 16px rgba(109, 58, 232, 0.12);
+    /* Top Accent ::before */
+    .subject-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 20px 20px 0 0;
     }
 
-    .subject-panel--maths:hover {
-      box-shadow: var(--shadow-hover), 0 -4px 20px rgba(109, 58, 232, 0.18);
+    .subject-panel--maths::before {
+      background: linear-gradient(90deg, #6D3AE8, #9B72F5);
     }
 
-    .subject-panel--reasoning {
-      border-top: 2px solid #D4820A;
-      box-shadow: var(--shadow-card), 0 -4px 16px rgba(212, 130, 10, 0.12);
+    .subject-panel--reasoning::before {
+      background: linear-gradient(90deg, #D4820A, #F0A830);
     }
 
-    .subject-panel--reasoning:hover {
-      box-shadow: var(--shadow-hover), 0 -4px 20px rgba(212, 130, 10, 0.18);
+    .subject-panel--english::before {
+      background: linear-gradient(90deg, #0F9E6E, #34D399);
     }
 
-    .subject-panel--english {
-      border-top: 2px solid #0F9E6E;
-      box-shadow: var(--shadow-card), 0 -4px 16px rgba(15, 158, 110, 0.12);
+    .subject-panel--gk::before {
+      background: linear-gradient(90deg, #D94F6B, #F472B6);
     }
 
-    .subject-panel--english:hover {
-      box-shadow: var(--shadow-hover), 0 -4px 20px rgba(15, 158, 110, 0.18);
+    /* Subject Icon Circle (top-right) */
+    .subject-panel__icon {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      user-select: none;
     }
 
-    .subject-panel--gk {
-      border-top: 2px solid #D94F6B;
-      box-shadow: var(--shadow-card), 0 -4px 16px rgba(217, 79, 107, 0.12);
+    .subject-panel__icon--maths {
+      background: rgba(109, 58, 232, 0.08);
+      color: #6D3AE8;
+      font-size: 16px;
+      font-family: var(--font-body);
     }
 
-    .subject-panel--gk:hover {
-      box-shadow: var(--shadow-hover), 0 -4px 20px rgba(217, 79, 107, 0.18);
+    .subject-panel__icon--reasoning {
+      background: rgba(212, 130, 10, 0.08);
+      color: #D4820A;
+      font-size: 16px;
+      font-family: var(--font-body);
     }
 
+    .subject-panel__icon--english {
+      background: rgba(15, 158, 110, 0.08);
+      color: #0F9E6E;
+      font-size: 14px;
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    .subject-panel__icon--gk {
+      background: rgba(217, 79, 107, 0.08);
+      color: #D94F6B;
+      font-size: 16px;
+      font-family: var(--font-body);
+    }
+
+    /* Subject Header & Meta */
     .subject-panel__header {
-      margin-bottom: var(--space-16);
+      margin-bottom: 0;
     }
 
     .subject-panel__title {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: var(--space-4);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1A1410;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
     }
 
     .subject-panel__meta {
       font-family: var(--font-body);
       font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--text-secondary);
-      margin-top: 4px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      margin-top: 0;
     }
 
+    .subject-panel--maths .subject-panel__meta {
+      color: rgba(109, 58, 232, 0.9);
+    }
+
+    .subject-panel--reasoning .subject-panel__meta {
+      color: rgba(212, 130, 10, 0.9);
+    }
+
+    .subject-panel--english .subject-panel__meta {
+      color: rgba(15, 158, 110, 0.9);
+    }
+
+    .subject-panel--gk .subject-panel__meta {
+      color: rgba(217, 79, 107, 0.9);
+    }
+
+    /* Divider Line below meta */
+    .subject-panel__divider {
+      height: 1px;
+      background: rgba(60, 40, 10, 0.06);
+      margin-bottom: 16px;
+    }
+
+    /* Topic Text */
     .subject-panel__topics-wrapper {
-      position: relative;
+      margin-bottom: 20px;
     }
 
     .subject-panel__topics {
       font-family: var(--font-body);
       font-size: 0.875rem;
       font-weight: 400;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-top: 16px;
+      color: #6B5E4E;
+      line-height: 1.75;
+      margin: 0;
     }
 
     .subject-panel__topics--clamped {
@@ -799,43 +936,144 @@
       overflow: hidden;
     }
 
+    /* Show all topics link */
     .subject-panel__toggle {
       background: none;
       border: none;
-      font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      margin-top: var(--space-12);
       padding: 0;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-top: 8px;
       display: inline-block;
-      transition: opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.85;
+      text-decoration: none;
+      transition: opacity 150ms ease;
     }
 
     .subject-panel__toggle:hover {
-      opacity: 0.8;
+      opacity: 1;
+      text-decoration: underline;
     }
 
     .subject-panel--maths .subject-panel__toggle {
-      color: var(--violet-light);
+      color: #6D3AE8;
     }
 
     .subject-panel--reasoning .subject-panel__toggle {
-      color: var(--amber);
+      color: #D4820A;
     }
 
     .subject-panel--english .subject-panel__toggle {
-      color: var(--emerald);
+      color: #0F9E6E;
     }
 
     .subject-panel--gk .subject-panel__toggle {
-      color: var(--rose);
+      color: #D94F6B;
     }
 
-    /* Tier II Table */
+    /* Card Footer */
+    .subject-panel__footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(60, 40, 10, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .subject-panel__topic-badge {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.2;
+    }
+
+    .subject-panel__topic-badge--maths {
+      background: rgba(109, 58, 232, 0.08);
+      border: 1px solid rgba(109, 58, 232, 0.15);
+      color: #6D3AE8;
+    }
+
+    .subject-panel__topic-badge--reasoning {
+      background: rgba(212, 130, 10, 0.08);
+      border: 1px solid rgba(212, 130, 10, 0.15);
+      color: #D4820A;
+    }
+
+    .subject-panel__topic-badge--english {
+      background: rgba(15, 158, 110, 0.08);
+      border: 1px solid rgba(15, 158, 110, 0.15);
+      color: #0F9E6E;
+    }
+
+    .subject-panel__topic-badge--gk {
+      background: rgba(217, 79, 107, 0.08);
+      border: 1px solid rgba(217, 79, 107, 0.15);
+      color: #D94F6B;
+    }
+
+    .subject-panel__notes-btn {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #FFFFFF;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
+      transition: opacity 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .subject-panel__footer .subject-panel__notes-btn {
+      margin-top: 0;
+    }
+
+    .subject-panel__notes-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .subject-panel__notes-btn--maths {
+      background: #6D3AE8;
+      box-shadow: 0 2px 12px rgba(109, 58, 232, 0.3);
+    }
+
+    .subject-panel__notes-btn--reasoning {
+      background: #D4820A;
+      box-shadow: 0 2px 12px rgba(212, 130, 10, 0.25);
+    }
+
+    .subject-panel__notes-btn--english {
+      background: #0F9E6E;
+      box-shadow: 0 2px 12px rgba(15, 158, 110, 0.25);
+    }
+
+    .subject-panel__notes-btn--gk {
+      background: #D94F6B;
+      box-shadow: 0 2px 12px rgba(217, 79, 107, 0.25);
+    }
+
+    /* Tier II Tab Table */
     .tier2-table-wrapper {
       width: 100%;
       overflow-x: auto;
+      background: #FFFFFF;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(60, 40, 10, 0.08);
+      box-shadow: 0 2px 8px rgba(60, 40, 10, 0.06);
     }
 
     .tier2-table {
@@ -845,33 +1083,62 @@
     }
 
     .tier2-table th {
-      padding: var(--space-16) var(--space-20);
+      background: #F5F2ED;
+      padding: 14px 20px;
       font-family: var(--font-body);
-      font-size: var(--text-sm);
-      font-weight: 500;
-      color: var(--text-secondary);
-      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #A8998A;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(60, 40, 10, 0.08);
     }
 
     .tier2-table td {
-      padding: var(--space-16) var(--space-20);
+      padding: 14px 20px;
       font-family: var(--font-body);
-      font-size: var(--text-base);
+      font-size: 0.9rem;
       font-weight: 400;
-      color: var(--text-primary);
-      border-bottom: 1px solid var(--border);
+      color: #1A1410;
+      border-bottom: 1px solid rgba(60, 40, 10, 0.05);
+    }
+
+    .tier2-table tbody tr:last-child td {
+      border-bottom: none;
     }
 
     .tier2-table tbody tr:nth-child(even) {
-      background-color: var(--table-row-even);
+      background: rgba(60, 40, 10, 0.015);
     }
 
-    .tier2-table td:last-child,
-    .tier2-table th:last-child {
-      font-family: var(--font-display);
+    .tier2-table td:last-child {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: #6D3AE8;
       font-feature-settings: "tnum";
       font-variant-numeric: tabular-nums;
       text-align: right;
+    }
+
+    .tier2-table th:last-child {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: #A8998A;
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      .section-syllabus {
+        padding: 64px 0;
+      }
+      .subject-panel {
+        padding: 24px 20px 20px;
+      }
+      .section-syllabus .section-tabs {
+        gap: 20px;
+        margin-bottom: 32px;
+      }
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -2685,61 +2952,73 @@
           <div class="syllabus__grid">
             <!-- Maths -->
             <div class="subject-panel subject-panel--maths">
+              <div class="subject-panel__icon subject-panel__icon--maths" aria-hidden="true">∑</div>
               <div class="subject-panel__header">
                 <h3 class="subject-panel__title">Maths</h3>
                 <p class="subject-panel__meta">25 questions · 50 marks</p>
+                <div class="subject-panel__divider"></div>
               </div>
               <div class="subject-panel__topics-wrapper">
                 <p class="subject-panel__topics subject-panel__topics--clamped" id="maths-topics"><span class="syllabus-topic-chip" data-slug="number-system" tabindex="0" role="button" title="View study notes for Number System">Number System</span>, <span class="syllabus-topic-chip" data-slug="bodmas" tabindex="0" role="button" title="View study notes for BODMAS">BODMAS</span>, <span class="syllabus-topic-chip" data-slug="lcm-hcf" tabindex="0" role="button" title="View study notes for LCM & HCF">LCM & HCF</span>, <span class="syllabus-topic-chip" data-slug="percentage" tabindex="0" role="button" title="View study notes for Percentage">Percentage</span>, <span class="syllabus-topic-chip" data-slug="ratio-proportion" tabindex="0" role="button" title="View study notes for Ratio & Proportion">Ratio & Proportion</span>, <span class="syllabus-topic-chip" data-slug="average" tabindex="0" role="button" title="View study notes for Average">Average</span>, <span class="syllabus-topic-chip" data-slug="profit-loss" tabindex="0" role="button" title="View study notes for Profit & Loss">Profit & Loss</span>, <span class="syllabus-topic-chip" data-slug="discount" tabindex="0" role="button" title="View study notes for Discount">Discount</span>, <span class="syllabus-topic-chip" data-slug="simple-interest" tabindex="0" role="button" title="View study notes for Simple Interest">Simple Interest</span>, <span class="syllabus-topic-chip" data-slug="compound-interest" tabindex="0" role="button" title="View study notes for Compound Interest">Compound Interest</span>, <span class="syllabus-topic-chip" data-slug="time-work" tabindex="0" role="button" title="View study notes for Time & Work">Time & Work</span>, <span class="syllabus-topic-chip" data-slug="pipes-cisterns" tabindex="0" role="button" title="View study notes for Pipes & Cisterns">Pipes & Cisterns</span>, <span class="syllabus-topic-chip" data-slug="time-speed-distance" tabindex="0" role="button" title="View study notes for Time Speed Distance">Time Speed Distance</span>, <span class="syllabus-topic-chip" data-slug="trains-boats" tabindex="0" role="button" title="View study notes for Trains & Boats">Trains & Boats</span>, <span class="syllabus-topic-chip" data-slug="mixture-alligation" tabindex="0" role="button" title="View study notes for Mixture & Alligation">Mixture & Alligation</span>, <span class="syllabus-topic-chip" data-slug="partnership" tabindex="0" role="button" title="View study notes for Partnership">Partnership</span>, <span class="syllabus-topic-chip" data-slug="algebra" tabindex="0" role="button" title="View study notes for Algebra">Algebra</span>, <span class="syllabus-topic-chip" data-slug="geometry" tabindex="0" role="button" title="View study notes for Geometry">Geometry</span>, <span class="syllabus-topic-chip" data-slug="mensuration-2d" tabindex="0" role="button" title="View study notes for Mensuration 2D">Mensuration 2D</span>, <span class="syllabus-topic-chip" data-slug="mensuration-3d" tabindex="0" role="button" title="View study notes for Mensuration 3D">Mensuration 3D</span>, <span class="syllabus-topic-chip" data-slug="trigonometry" tabindex="0" role="button" title="View study notes for Trigonometry">Trigonometry</span>, <span class="syllabus-topic-chip" data-slug="heights-distances" tabindex="0" role="button" title="View study notes for Heights & Distances">Heights & Distances</span>, <span class="syllabus-topic-chip" data-slug="data-interpretation" tabindex="0" role="button" title="View study notes for Data Interpretation">Data Interpretation</span></p>
-                <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
-                  <button class="subject-panel__toggle" data-target="maths-topics" aria-expanded="false">Show all topics</button>
-                  <button class="btn btn--secondary btn--sm subject-panel__notes-trigger" data-subject="maths">Explore Maths Notes (23) ↗</button>
-                </div>
+                <button class="subject-panel__toggle" data-target="maths-topics" aria-expanded="false">Show all topics</button>
+              </div>
+              <div class="subject-panel__footer">
+                <span class="subject-panel__topic-badge subject-panel__topic-badge--maths">23 topics</span>
+                <button class="subject-panel__notes-btn subject-panel__notes-btn--maths subject-panel__notes-trigger" data-subject="maths">Explore Notes ↗</button>
               </div>
             </div>
 
             <!-- Reasoning -->
             <div class="subject-panel subject-panel--reasoning">
+              <div class="subject-panel__icon subject-panel__icon--reasoning" aria-hidden="true">⬡</div>
               <div class="subject-panel__header">
                 <h3 class="subject-panel__title">Reasoning</h3>
                 <p class="subject-panel__meta">25 questions · 50 marks</p>
+                <div class="subject-panel__divider"></div>
               </div>
               <div class="subject-panel__topics-wrapper">
                 <p class="subject-panel__topics subject-panel__topics--clamped" id="reasoning-topics"><span class="syllabus-topic-chip" data-slug="analogy" tabindex="0" role="button" title="View study notes for Analogy">Analogy</span>, <span class="syllabus-topic-chip" data-slug="classification" tabindex="0" role="button" title="View study notes for Classification (odd One Out)">Classification (odd One Out)</span>, <span class="syllabus-topic-chip" data-slug="number-series" tabindex="0" role="button" title="View study notes for Number Series">Number Series</span>, <span class="syllabus-topic-chip" data-slug="alphabet-series" tabindex="0" role="button" title="View study notes for Alphabet Series">Alphabet Series</span>, <span class="syllabus-topic-chip" data-slug="coding-decoding" tabindex="0" role="button" title="View study notes for Coding-decoding">Coding-decoding</span>, <span class="syllabus-topic-chip" data-slug="blood-relations" tabindex="0" role="button" title="View study notes for Blood Relations">Blood Relations</span>, <span class="syllabus-topic-chip" data-slug="direction-distance" tabindex="0" role="button" title="View study notes for Direction & Distance">Direction & Distance</span>, <span class="syllabus-topic-chip" data-slug="ranking-order" tabindex="0" role="button" title="View study notes for Ranking & Order">Ranking & Order</span>, <span class="syllabus-topic-chip" data-slug="syllogism" tabindex="0" role="button" title="View study notes for Syllogism">Syllogism</span>, <span class="syllabus-topic-chip" data-slug="venn-diagram" tabindex="0" role="button" title="View study notes for Venn Diagram">Venn Diagram</span>, <span class="syllabus-topic-chip" data-slug="seating-arrangement" tabindex="0" role="button" title="View study notes for Seating Arrangement">Seating Arrangement</span>, <span class="syllabus-topic-chip" data-slug="non-verbal-reasoning" tabindex="0" role="button" title="View study notes for Non-verbal Reasoning">Non-verbal Reasoning</span>, <span class="syllabus-topic-chip" data-slug="mirror-water-image" tabindex="0" role="button" title="View study notes for Mirror & Water Image">Mirror & Water Image</span>, <span class="syllabus-topic-chip" data-slug="paper-folding" tabindex="0" role="button" title="View study notes for Paper Folding & Cutting">Paper Folding & Cutting</span>, <span class="syllabus-topic-chip" data-slug="figure-series" tabindex="0" role="button" title="View study notes for Figure Series">Figure Series</span>, <span class="syllabus-topic-chip" data-slug="statement-conclusion" tabindex="0" role="button" title="View study notes for Statement & Conclusion">Statement & Conclusion</span>, <span class="syllabus-topic-chip" data-slug="critical-reasoning" tabindex="0" role="button" title="View study notes for Critical Reasoning">Critical Reasoning</span>, <span class="syllabus-topic-chip" data-slug="embedded-figures" tabindex="0" role="button" title="View study notes for Embedded Figures">Embedded Figures</span></p>
-                <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
-                  <button class="subject-panel__toggle" data-target="reasoning-topics" aria-expanded="false">Show all topics</button>
-                  <button class="btn btn--secondary btn--sm subject-panel__notes-trigger" data-subject="reasoning">Explore Reasoning Notes (18) ↗</button>
-                </div>
+                <button class="subject-panel__toggle" data-target="reasoning-topics" aria-expanded="false">Show all topics</button>
+              </div>
+              <div class="subject-panel__footer">
+                <span class="subject-panel__topic-badge subject-panel__topic-badge--reasoning">18 topics</span>
+                <button class="subject-panel__notes-btn subject-panel__notes-btn--reasoning subject-panel__notes-trigger" data-subject="reasoning">Explore Notes ↗</button>
               </div>
             </div>
 
             <!-- English -->
             <div class="subject-panel subject-panel--english">
+              <div class="subject-panel__icon subject-panel__icon--english" aria-hidden="true">Aa</div>
               <div class="subject-panel__header">
                 <h3 class="subject-panel__title">English</h3>
                 <p class="subject-panel__meta">25 questions · 50 marks</p>
+                <div class="subject-panel__divider"></div>
               </div>
               <div class="subject-panel__topics-wrapper">
                 <p class="subject-panel__topics subject-panel__topics--clamped" id="english-topics"><span class="syllabus-topic-chip" data-slug="parts-of-speech" tabindex="0" role="button" title="View study notes for Parts of Speech">Parts of Speech</span>, <span class="syllabus-topic-chip" data-slug="noun-pronoun" tabindex="0" role="button" title="View study notes for Noun & Pronoun">Noun & Pronoun</span>, <span class="syllabus-topic-chip" data-slug="verb-adjective" tabindex="0" role="button" title="View study notes for Verb & Adjective">Verb & Adjective</span>, <span class="syllabus-topic-chip" data-slug="articles" tabindex="0" role="button" title="View study notes for Articles">Articles</span>, <span class="syllabus-topic-chip" data-slug="subject-verb-agreement" tabindex="0" role="button" title="View study notes for Subject-verb Agreement">Subject-verb Agreement</span>, <span class="syllabus-topic-chip" data-slug="tenses" tabindex="0" role="button" title="View study notes for Tenses">Tenses</span>, <span class="syllabus-topic-chip" data-slug="active-passive" tabindex="0" role="button" title="View study notes for Active & Passive Voice">Active & Passive Voice</span>, <span class="syllabus-topic-chip" data-slug="direct-indirect" tabindex="0" role="button" title="View study notes for Direct & Indirect Speech">Direct & Indirect Speech</span>, <span class="syllabus-topic-chip" data-slug="error-detection" tabindex="0" role="button" title="View study notes for Error Detection">Error Detection</span>, <span class="syllabus-topic-chip" data-slug="sentence-improvement" tabindex="0" role="button" title="View study notes for Sentence Improvement">Sentence Improvement</span>, <span class="syllabus-topic-chip" data-slug="synonyms-antonyms" tabindex="0" role="button" title="View study notes for Synonyms & Antonyms">Synonyms & Antonyms</span>, <span class="syllabus-topic-chip" data-slug="one-word-substitution" tabindex="0" role="button" title="View study notes for One-word Substitution">One-word Substitution</span>, <span class="syllabus-topic-chip" data-slug="idioms-phrases" tabindex="0" role="button" title="View study notes for Idioms & Phrases">Idioms & Phrases</span>, <span class="syllabus-topic-chip" data-slug="cloze-test" tabindex="0" role="button" title="View study notes for Cloze Test">Cloze Test</span>, <span class="syllabus-topic-chip" data-slug="reading-comprehension" tabindex="0" role="button" title="View study notes for Reading Comprehension">Reading Comprehension</span>, <span class="syllabus-topic-chip" data-slug="para-jumbles" tabindex="0" role="button" title="View study notes for Para Jumbles">Para Jumbles</span>, <span class="syllabus-topic-chip" data-slug="vocabulary" tabindex="0" role="button" title="View study notes for Vocabulary">Vocabulary</span></p>
-                <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
-                  <button class="subject-panel__toggle" data-target="english-topics" aria-expanded="false">Show all topics</button>
-                  <button class="btn btn--secondary btn--sm subject-panel__notes-trigger" data-subject="english">Explore English Notes (17) ↗</button>
-                </div>
+                <button class="subject-panel__toggle" data-target="english-topics" aria-expanded="false">Show all topics</button>
+              </div>
+              <div class="subject-panel__footer">
+                <span class="subject-panel__topic-badge subject-panel__topic-badge--english">17 topics</span>
+                <button class="subject-panel__notes-btn subject-panel__notes-btn--english subject-panel__notes-trigger" data-subject="english">Explore Notes ↗</button>
               </div>
             </div>
 
             <!-- GK -->
             <div class="subject-panel subject-panel--gk">
+              <div class="subject-panel__icon subject-panel__icon--gk" aria-hidden="true">◎</div>
               <div class="subject-panel__header">
                 <h3 class="subject-panel__title">GK</h3>
                 <p class="subject-panel__meta">25 questions · 50 marks</p>
+                <div class="subject-panel__divider"></div>
               </div>
               <div class="subject-panel__topics-wrapper">
                 <p class="subject-panel__topics subject-panel__topics--clamped" id="gk-topics"><span class="syllabus-topic-chip" data-slug="history" tabindex="0" role="button" title="View study notes for History">History</span>, <span class="syllabus-topic-chip" data-slug="geography" tabindex="0" role="button" title="View study notes for Geography">Geography</span>, <span class="syllabus-topic-chip" data-slug="polity" tabindex="0" role="button" title="View study notes for Indian Polity">Indian Polity</span>, <span class="syllabus-topic-chip" data-slug="economics" tabindex="0" role="button" title="View study notes for Economics">Economics</span>, <span class="syllabus-topic-chip" data-slug="science" tabindex="0" role="button" title="View study notes for General Science">General Science</span>, <span class="syllabus-topic-chip" data-slug="computer-awareness" tabindex="0" role="button" title="View study notes for Computer Awareness">Computer Awareness</span>, <span class="syllabus-topic-chip" data-slug="current-affairs" tabindex="0" role="button" title="View study notes for Current Affairs">Current Affairs</span>, <span class="syllabus-topic-chip" data-slug="static-gk" tabindex="0" role="button" title="View study notes for Static GK">Static GK</span></p>
-                <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
-                  <button class="subject-panel__toggle" data-target="gk-topics" aria-expanded="false">Show all topics</button>
-                  <button class="btn btn--secondary btn--sm subject-panel__notes-trigger" data-subject="gk">Explore GK Notes (8) ↗</button>
-                </div>
+                <button class="subject-panel__toggle" data-target="gk-topics" aria-expanded="false">Show all topics</button>
+              </div>
+              <div class="subject-panel__footer">
+                <span class="subject-panel__topic-badge subject-panel__topic-badge--gk">8 topics</span>
+                <button class="subject-panel__notes-btn subject-panel__notes-btn--gk subject-panel__notes-trigger" data-subject="gk">Explore Notes ↗</button>
               </div>
             </div>
           </div>
